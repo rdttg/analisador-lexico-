@@ -22,7 +22,7 @@ class AFD {
           q = id;
           id++;
         } else {
-          q = this.trans[q][s];
+          q = this.trans[q][s]; // remete a palvra do lexico
         }
       }
 // lembrar de arrumar a posicao

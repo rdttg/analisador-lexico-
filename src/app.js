@@ -44,6 +44,7 @@ function gerarAFD() {
 
 function montarTabela() {
   if (!afd) return;
+  
 
   const estados = [...Array(afd.total).keys()];
   const a = afd.alfabeto;
