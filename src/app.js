@@ -7,7 +7,6 @@ const tabela = document.getElementById("tabela");
 const saida = document.getElementById("saida");
 const btnClearAll = document.getElementById("btnClearAll");
 
-
 let palavras = [];
 let afd = null;
 let buffer = "";
@@ -28,7 +27,7 @@ btnAdd.onclick = () => {
 function atualizarLista() {
   listaDiv.innerHTML =
     palavras.length === 0
-      ? "<i>nenhuma palavra adicionada</i>" // deixar escrever o que quiser, estacva limitando
+      ? "<i>nenhuma palavra adicionada</i>"
       : palavras.join(", ");
 }
 
@@ -44,14 +43,13 @@ function gerarAFD() {
 
 function montarTabela() {
   if (!afd) return;
-  
 
   const estados = [...Array(afd.total).keys()];
   const a = afd.alfabeto;
 
   let html = "<tr><th>Estado</th>";
 
-  for (const s of a) html += `<th>${s}</th>`; 
+  for (const s of a) html += `<th>${s}</th>`;
   html += "</tr>";
 
   for (const e of estados) {
@@ -69,10 +67,9 @@ function montarTabela() {
 function atualizarTabela() {
   tabela.querySelectorAll("tr").forEach(tr => tr.classList.remove("atual", "erro"));
 
-  if (!afd) return; // vai ser chamaa no event listener depois
+  if (!afd) return;
 
   if (afd.estado === -1) {
-    tabela.insertRow().classList.add("erro");
     return;
   }
 
@@ -87,16 +84,36 @@ entrada.addEventListener("input", () => {
   const valor = entrada.value;
   const ultimo = valor.slice(-1);
 
+  if (ultimo === " ") {
+    if (buffer.length > 0) {
+      let msg;
+
+      if (afd.estado === -1) {
+        msg = `<span class="negado">'${buffer}' → REJEITADO</span>`;
+      } else if (afd.aceito()) {
+        msg = `<span class="ok">'${buffer}' → ACEITO</span>`;
+      } else {
+        msg = `<span class="negado">'${buffer}' → REJEITADO</span>`;
+      }
+
+      saida.innerHTML += msg + "<br>";
+    }
+
+    afd.reset();
+    buffer = "";
+    entrada.value = "";
+    atualizarTabela();
+    return;
+  }
+
   if (valor.length < buffer.length) {
     buffer = valor;
     afd.reset();
     for (const s of buffer) afd.processar(s);
     atualizarTabela();
-    atualizarSaida(); // nao precisa chamar gerar afd aqui pq puxa pelo ht
     return;
   }
 
-  // valida
   if (!/[a-z]/.test(ultimo)) {
     entrada.value = valor.slice(0, -1);
     return;
@@ -105,18 +122,8 @@ entrada.addEventListener("input", () => {
   buffer += ultimo;
   afd.processar(ultimo);
   atualizarTabela();
-  atualizarSaida();
 });
 
-function atualizarSaida() {
-  if (afd.estado === -1) {
-    saida.innerHTML = `<span class="negado">token rejeitado</span>`;
-  } else if (afd.aceito()) {
-    saida.innerHTML = `<span class="ok">token aceito</span>`;
-  } else {
-    saida.innerHTML = `<span class="pendente">processando…</span>`;
-  }
-}
 
 btnClearAll.onclick = () => {
   palavras = [];
@@ -131,4 +138,3 @@ btnClearAll.onclick = () => {
 
   buffer = "";
 };
-
