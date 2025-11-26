@@ -50,7 +50,7 @@ function montarTabela() {
   let html = "<tr><th>Estado</th>";
 
   for (const s of a) html += `<th>${s}</th>`;
-  html += "</tr>";
+  html += "</tr>"; // alterado pois estava validando errado txt 2
 
   for (const e of estados) {
     html += `<tr data-e="${e}"><td>q${e}${afd.finais.has(e) ? " *" : ""}</td>`;
