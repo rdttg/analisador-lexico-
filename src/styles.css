@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e7f1ff;
+}
+
+.layout {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.box {
+  background: white;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border-left: 5px solid #2962ff;
+  box-shadow: 0 0 8px #0002;
+}
+
+h1, h2 {
+  margin: 0 0 10px;
+}
+
+.linha {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  padding: 8px;
+  flex: 1;
+  border-radius: 4px;
+  border: 1px solid #999;
+}
+
+button {
+  padding: 8px 14px;
+  background: #2962ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #003cb3;
+}
+
+.lista {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+#saida {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.ok {
+  color: #0c8c36;
+}
+
+.negado {
+  color: #d50000;
+}
+
+.pendente {
+  color: #555;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+tr.atual {
+  background: #e0e9ff;
+}
+
+tr.erro {
+  background: #ffb4b4;
+}
+
+.tabela-wrap {
+  overflow-x: auto;
+}
+
+button.danger {
+  background: #d32f2f;
+}
+
+button.danger:hover {
+  background: #a31010;
+}
+

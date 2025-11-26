@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analisador Léxico AFD</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <section class="box">
+      <h1>Construção de AFD</h1>
+      <p>Adicione palavras (a–z)</p>
+
+      <div class="linha">
+  <input id="novaPalavra" placeholder="ex: teste">
+  <button id="btnAdd">Adicionar</button>
+  <button id="btnClearAll" class="danger">Limpar tudo</button>
+</div>
+
+
+      <div id="lista" class="lista"></div>
+    </section>
+
+    <section class="box">
+      <h2>Entrada</h2>
+      <input id="entrada">
+      <div id="saida"></div>
+    </section>
+
+    <section class="box">
+      <div class="tabela-wrap">
+        <table id="tabela"></table>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="src/afd.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
